@@ -1,0 +1,76 @@
+@import '../styles/colors.scss';
+@import '../styles/variables.scss';
+
+.FullLayout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  & > .spacer {
+    flex: 1 0 auto;
+    background-color: $dashboard-bg;
+  }
+
+  .layout-body-component {
+    background-color: $dashboard-bg;
+  }
+
+  .screen {
+    padding: 0 $page-side-padding 1em $page-side-padding;
+
+    &.full-width {
+      padding: 0 0 1em;
+    }
+  }
+
+  h1 {
+    margin-top: 1.5em;
+    color: $navy;
+    margin-bottom: 1em;
+    font-size: 2em;
+  }
+
+  .DashboardRoundedContainer {
+    width: 66%;
+    max-width: 850px;
+    margin-bottom: 2em;
+  }
+
+  .ScreenContainer {
+    margin: 1em auto;
+  }
+
+  @media screen and (max-width: $breakpoint) {
+    .screen {
+      padding: 0 $page-side-padding-mobile;
+
+      &.full-width {
+        padding: 0;
+      }
+    }
+
+    .contentWrapper {
+      max-width: 100% !important;
+    }
+
+    .section-eligibility {
+      .section-wrapper {
+        .eligbilityList {
+          flex-direction: column;
+        }
+      }
+    }
+
+    .section-howItWork {
+      .iconsWrapper {
+        flex-direction: column;
+      }
+    }
+
+    .DashboardRoundedContainer,
+    .ScreenContainer {
+      width: 100%;
+    }
+  }
+}

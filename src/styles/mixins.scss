@@ -1,0 +1,38 @@
+
+@mixin hw($height, $width: $height) {
+  height: $height;
+  width: $width;
+}
+
+@mixin flexRow() {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flexColumn() {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flexDirection($column: true) {
+  @if $column {
+    @include flexColumn();
+  } @else {
+    @include flexRow();
+  }
+}
+
+@mixin justify($justifyContent, $column: true) {
+  @include flexDirection($column);
+  justify-content: $justifyContent;
+}
+
+@mixin align($alignItems, $column: true) {
+  @include flexDirection($column);
+  align-items: $alignItems;
+}
+
+@mixin flex($justifyContent, $alignItems: $justifyContent, $column: true) {
+  @include justify($justifyContent, $column);
+  align-items: $alignItems;
+}

@@ -1,0 +1,49 @@
+@import './styles/colors.scss';
+
+.App {
+  color: $main-text-color;
+
+  .standard-link {
+    text-decoration: none;
+    color: $brand;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &.bold {
+      font-weight: bold;
+    }
+  }
+
+  .standard-paragraph {
+    font-size: 0.9em;
+    color: $medium-text;
+  }
+
+  .standard-error {
+    color: $error;
+  }
+
+  .align-center {
+    text-align: center;
+  }
+
+  h4 {
+    color: $navy;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 0;
+  }
+
+  &.zh-Hant-HK {
+    .chinese-reverse-1 {
+      order: -1;
+    }
+
+    .chinese-reverse-2 {
+      order: -2;
+    }
+  }
+}

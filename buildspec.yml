@@ -1,0 +1,32 @@
+version: 0.2
+env:
+  parameter-store:
+    GITHUB_USER: GITHUB_USER
+    GITHUB_API_TOKEN: GITHUB_API_TOKEN
+    SLACK_TOKEN: SLACK_TOKEN
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - git config --global url."https://$GITHUB_USER:$GITHUB_API_TOKEN@github.com".insteadOf "https://github.com"
+      - npm config set unsafe-perm true
+      - npm ci
+  pre_build:
+    commands:
+      - npm t
+  build:
+    commands:
+      - |-
+        echo "Building for $TARGET_S3_BUCKET"
+        REACT_APP_SITE=$TARGET_S3_BUCKET REACT_APP_ENV=$ENV npm run build
+        if [ "$SKIP_BUILDING_DOCKER_IMAGE" != "true" ]; then
+          echo "Deploying to bucket: $TARGET_S3_BUCKET"
+          aws s3 sync ./build s3://$TARGET_S3_BUCKET --acl public-read --delete
+          echo "Deployed to the bucket: $TARGET_S3_BUCKET"
+        fi
+artifacts:
+  files:
+    - build/**/*
+    - testspec.yml
+  discard-paths: yes

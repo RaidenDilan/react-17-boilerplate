@@ -1,0 +1,10 @@
+@import '../../styles/global.scss';
+
+.errorPage {
+  @include hw(60vh, 100%);
+  @include flex(center);
+
+  h1 {
+    text-align: center;
+  }
+}
